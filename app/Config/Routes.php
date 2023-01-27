@@ -30,6 +30,20 @@ $routes->set404Override();
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->group('posts', static function($routes){
+    $routes->get('', 'PostController::index');
+    $routes->post('', 'PostController::store');
+    $routes->get('(:num)', 'PostController::view/$1');
+    $routes->put('(:num)', 'PostController::update/$1');
+    $routes->delete('(:num)', 'PostController::delete/$1');
+});
+
+/* 
+$routes->match(['get', 'post'], 'news/create', 'NewsController::create');
+$routes->get('news/(:segment)', 'NewsController::view/$1');
+$routes->get('news', 'NewsController::index');
+$routes->get('(:alpha)', 'PageController::view/$1'); 
+*/
 
 /*
  * --------------------------------------------------------------------
