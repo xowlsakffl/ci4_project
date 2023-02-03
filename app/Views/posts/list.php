@@ -1,5 +1,21 @@
 <?=$this->extend('layouts/frontend.php');?>
-
+<?=$this->section('script');?>
+<script>
+function onFileUpload(input) {
+    id = '#preview';
+    console.log(id);
+    console.log(input.files);
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $(id).attr('src', e.target.result).width(300)
+        };
+        reader.readAsDataURL(input.files[0]);
+        console.log(reader);
+    }
+}
+</script>
+<?=$this->endSection();?>
 <?=$this->section('content');?>
     <!--modal-->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -10,10 +26,14 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="frm" method="post">
-                    <div class="form-group">
-                        <label for="title">Image</label>
-                        <input type="file" name="Image" class="form-control image">
+                <form id="postForm" method="post">
+                    
+                    <div class="d-grid text-center">
+                        <img class="mb-3" id="preview" alt="Preview Image" src="/img/previewImage.png" />
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="file" name="file" id="fileInput" multiple="true" class="form-control form-control-lg" onChange="onFileUpload(this)">
                         <span id="error_file" class="text-danger ms-3"></span>
                     </div>
 
@@ -43,9 +63,16 @@
             </div>
         </div>
     </div>
-
     <!--content-->
     <div class="container-md">
+        <div class="row">
+            <div class="col">
+                <form action="/posts" id="frm" method="get" class="d-flex mb-3">
+                    <input type="text" name="searchData" class="form-control mx-3" id="searchText">
+                    <input type="submit" value="Search" class="btn btn-primary">                  
+                </form>
+            </div>
+        </div>
         <div class="row">
             <table class="table">
                 <thead class="table-dark">
@@ -131,8 +158,7 @@
                             alertify.success(response.message);
                         }else{
                             alert(response.message);
-                        }     
-                           
+                        }      
                     }
                 });
             }

@@ -18,6 +18,7 @@
         <?=$this->include('layouts/inc/navbar.php')?>
 
         <div class="container mb-5 mt-5">
+            <?=$this->renderSection('script')?>
             <?=$this->renderSection('content')?>
         </div>
         

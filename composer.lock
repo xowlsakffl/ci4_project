@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "631af174721be61b389b2d61c575438e",
+    "content-hash": "e4b343b8ad24f7adf438de93b55896fe",
     "packages": [
         {
             "name": "codeigniter4/framework",
@@ -81,6 +81,135 @@
             "time": "2023-01-14T11:32:47+00:00"
         },
         {
+            "name": "codeigniter4/settings",
+            "version": "v2.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeigniter4/settings.git",
+                "reference": "0c3fbd5a474eeb592bef5550be2a6d2f73a8a09d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeigniter4/settings/zipball/0c3fbd5a474eeb592bef5550be2a6d2f73a8a09d",
+                "reference": "0c3fbd5a474eeb592bef5550be2a6d2f73a8a09d",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.3 || ^8.0"
+            },
+            "require-dev": {
+                "codeigniter/coding-standard": "^1.1",
+                "codeigniter4/codeigniter4": "dev-develop",
+                "fakerphp/faker": "^1.9",
+                "mockery/mockery": "^1.0",
+                "nexusphp/cs-config": "^3.1",
+                "nexusphp/tachycardia": "^1.0",
+                "php-coveralls/php-coveralls": "^2.4",
+                "phpstan/phpstan": "^1.0",
+                "phpunit/phpunit": "^9.0",
+                "squizlabs/php_codesniffer": "^3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeIgniter\\Settings\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "**/Database/Migrations/**"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lonnie Ezell",
+                    "email": "lonnieje@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Settings library for CodeIgniter 4",
+            "homepage": "https://github.com/codeigniter4/settings",
+            "keywords": [
+                "Settings",
+                "codeigniter",
+                "codeigniter4"
+            ],
+            "support": {
+                "issues": "https://github.com/codeigniter4/settings/issues",
+                "source": "https://github.com/codeigniter4/settings/tree/v2.1.0"
+            },
+            "time": "2021-11-22T17:30:18+00:00"
+        },
+        {
+            "name": "codeigniter4/shield",
+            "version": "v1.0.0-beta.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codeigniter4/shield.git",
+                "reference": "5e6d5175da45b06dbe7d1deda03458d79d45a951"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codeigniter4/shield/zipball/5e6d5175da45b06dbe7d1deda03458d79d45a951",
+                "reference": "5e6d5175da45b06dbe7d1deda03458d79d45a951",
+                "shasum": ""
+            },
+            "require": {
+                "codeigniter4/settings": "^2.0",
+                "php": "^7.4.3 || ^8.0"
+            },
+            "provide": {
+                "codeigniter4/authentication-implementation": "1.0"
+            },
+            "require-dev": {
+                "codeigniter4/devkit": "^1.0",
+                "codeigniter4/framework": "^4.2.3",
+                "mockery/mockery": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Helpers/auth_helper.php",
+                    "src/Helpers/email_helper.php"
+                ],
+                "psr-4": {
+                    "CodeIgniter\\Shield\\": "src"
+                },
+                "exclude-from-classmap": [
+                    "**/Database/Migrations/**"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lonnie Ezell",
+                    "email": "lonnieje@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Authentication and Authorization for CodeIgniter 4",
+            "homepage": "https://github.com/codeigniter4/shield",
+            "keywords": [
+                "Authentication",
+                "authorization",
+                "codeigniter",
+                "codeigniter4"
+            ],
+            "support": {
+                "docs": "https://github.com/codeigniter4/shield/blob/develop/docs/index.md",
+                "forum": "https://github.com/codeigniter4/shield/discussions",
+                "issues": "https://github.com/codeigniter4/shield/issues",
+                "slack": "https://codeigniterchat.slack.com",
+                "source": "https://github.com/codeigniter4/shield"
+            },
+            "time": "2022-10-30T23:14:47+00:00"
+        },
+        {
             "name": "laminas/laminas-escaper",
             "version": "2.12.0",
             "source": {
@@ -141,80 +270,6 @@
                 }
             ],
             "time": "2022-10-10T10:11:09+00:00"
-        },
-        {
-            "name": "myth/auth",
-            "version": "v1.2.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/lonnieezell/myth-auth.git",
-                "reference": "7d0347faa47bd754d2dc49593a9852800be73986"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/lonnieezell/myth-auth/zipball/7d0347faa47bd754d2dc49593a9852800be73986",
-                "reference": "7d0347faa47bd754d2dc49593a9852800be73986",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.4 || ^8.0"
-            },
-            "provide": {
-                "codeigniter4/authentication-implementation": "1.0"
-            },
-            "require-dev": {
-                "codeigniter4/codeigniter4-standard": "^1.0",
-                "codeigniter4/devkit": "^1.0",
-                "codeigniter4/framework": "^4.1",
-                "mockery/mockery": "^1.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Myth\\Auth\\": "src"
-                },
-                "exclude-from-classmap": [
-                    "**/Database/Migrations/**"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Lonnie Ezell",
-                    "email": "lonnieje@gmail.com",
-                    "homepage": "http://newmythmedia.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Flexible authentication/authorization system for CodeIgniter 4.",
-            "homepage": "https://github.com/lonnieezell/myth-auth",
-            "keywords": [
-                "Authentication",
-                "authorization",
-                "codeigniter"
-            ],
-            "support": {
-                "issues": "https://github.com/lonnieezell/myth-auth/issues",
-                "source": "https://github.com/lonnieezell/myth-auth/tree/v1.2.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/lonnieezell",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/mgatner",
-                    "type": "github"
-                },
-                {
-                    "url": "https://www.patreon.com/lonnieezell",
-                    "type": "patreon"
-                }
-            ],
-            "time": "2022-07-13T18:35:46+00:00"
         },
         {
             "name": "psr/log",
@@ -2239,9 +2294,9 @@
         }
     ],
     "aliases": [],
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "stability-flags": [],
-    "prefer-stable": false,
+    "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^7.4 || ^8.0"

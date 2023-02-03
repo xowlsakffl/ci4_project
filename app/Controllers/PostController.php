@@ -19,8 +19,20 @@ class PostController extends BaseController
 
     public function index()
     {
+        $searchData = $this->request->getGet('searchData');
+
+        if($searchData){
+            $pagenateData = $this->posts->select('*')
+            ->orLike('title', $searchData)
+            ->orLike('body', $searchData)
+            ->orLike('slug', $searchData)
+            ->paginate(5);
+        }else{
+            $pagenateData = $this->posts->paginate(10);
+        }
+
         $data = [
-            'posts' => $this->posts->paginate(10),
+            'posts' => $pagenateData,
             'pager' => $this->posts->pager,
             'title' => 'Posts',
         ];
@@ -121,4 +133,17 @@ class PostController extends BaseController
             return $this->fail($data);
         }
     }
+
+/*     public function search()
+    {
+        $searchData = $this->request->getGet();
+
+        $db = \Config\Database::connect();
+        $builder = $db->table('posts');
+        
+        $sql = $builder->like('title', $searchData['searchText'])->select('*')->limit(10)->get();
+        $data = $sql->getResult();
+
+        return $this->respond($data);
+    } */
 }
