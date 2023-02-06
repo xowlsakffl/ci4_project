@@ -14,7 +14,7 @@ class Post extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['title', 'body', 'slug', 'image', 'created_at'];
+    protected $allowedFields    = ['title', 'body', 'img_name', 'file', 'slug', 'created_at'];
 
     // Dates
     protected $useTimestamps = false;

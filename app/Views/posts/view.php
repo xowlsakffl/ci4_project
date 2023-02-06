@@ -52,6 +52,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title mb-2"><?= esc(mb_strimwidth($post['title'],0,15,"..","UTF-8")) ?></h5>
+                        <h5 class="card-title mb-2"><img src="<?=base_url('/uploads/'.$post['img_name'])?>" alt="" style="max-width:100px"></h5>
                         <h6 class="card-subtitle mb-2">
                             <?= esc($post['slug']) ?>
                         </h6>

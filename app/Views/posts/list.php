@@ -3,15 +3,12 @@
 <script>
 function onFileUpload(input) {
     id = '#preview';
-    console.log(id);
-    console.log(input.files);
     if (input.files && input.files[0]) {
         var reader = new FileReader();
         reader.onload = function (e) {
             $(id).attr('src', e.target.result).width(300)
         };
         reader.readAsDataURL(input.files[0]);
-        console.log(reader);
     }
 }
 </script>
@@ -89,7 +86,7 @@ function onFileUpload(input) {
                     <?php foreach ($posts as $post) : ?>
                         <tr onclick="location.href='/posts/<?=$post['id']?>'" role="button">
                             <td><?= esc($post['id']) ?></td>
-                            <td><?= esc($post['id']) ?></td>
+                            <td><img src="<?=base_url('/uploads/'.$post['img_name'])?>" alt="" style="max-width:100px"></td>
                             <td><?= esc(mb_strimwidth($post['title'],0,15,"..","UTF-8")) ?></td>
                             <td><?= esc(mb_strimwidth($post['body'],0,15,"..","UTF-8")) ?></td>
                             <td><?= esc($post['slug']) ?></td>
@@ -108,7 +105,6 @@ function onFileUpload(input) {
             </div>
         </div>
     </div>
-
 <?=$this->endSection();?>
 
 <?=$this->section('script');?>
@@ -116,12 +112,17 @@ function onFileUpload(input) {
     $(document).ready(function () {
         let csrfToken = '<?=csrf_token()?>';
         let csrfHash = '<?=csrf_hash()?>';
+        error_file = '';
         error_title = '';
         error_body = '';
         error_slug = '';
 
-        $('.ajaxpost-save').click(function () { 
-            if($.trim($('.title').val()).length == 0) {
+        $('.ajaxpost-save').click(function (e) {      
+            if ($('#fileInput').val() == '') {
+                error_file = 'Please choice file.';
+                $('#error_file').text(error_file);
+                $('#fileInput').focus();
+            }else if($.trim($('.title').val()).length == 0) {
                 error_title = 'Please enter title.';
                 $('#error_title').text(error_title);
                 $('.title').focus();
@@ -134,26 +135,26 @@ function onFileUpload(input) {
                 $('#error_slug').text(error_slug);
                 $('.slug').focus();
             }
-
-            if(error_title != '' || error_body != '' || error_slug != ''){
+            
+            
+            if(error_file != '' || error_title != '' || error_body != '' || error_slug != ''){
                 return false;
             }else{
-                data = {
-                    [csrfToken]: csrfHash,
-                    title: $('.title').val(),
-                    body: $('.body').val(),
-                    slug: $('.slug').val(),
-                };
+                var data = new FormData(document.getElementById('postForm'));
+                data.append([csrfToken], csrfHash);
 
                 $.ajax({
                     type: "post",
                     url: "<?=base_url('posts')?>",
                     data: data,
                     dataType: "json",
+                    contentType: false,//default 값은 "application/x-www-form-urlencoded; charset=UTF-8", "multipart/form-data"로 전송되도록 false 설정. 명시적으로 "multipart/form-data"으로 설정해주면 boundary string이 안 들어가 제대로 동작하지 않는다.
+                    processData: false,//processData : 일반적으로 서버에 전달되는 데이터는 query string 형태이다.
                     success: function (response) {
                         $('#exampleModal').modal('hide');
                         $('#exampleModal').find('input').val('');   
-                        if(response.code == 200){
+                        console.log(response.status);
+                        if(response.status == true){
                             alertify.set('notifier', 'position', 'top-right');
                             alertify.success(response.message);
                         }else{

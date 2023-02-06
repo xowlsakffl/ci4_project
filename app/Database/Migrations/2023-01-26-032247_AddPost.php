@@ -21,15 +21,16 @@ class AddPost extends Migration
             ],
             'body' => [
                 'type' => 'TEXT',
-                'null' => true,
+            ],
+            'img_name' => [
+                'type' => 'TEXT',
+            ],
+            'file' => [
+                'type' => 'TEXT',
             ],
             'slug' => [
                 'type'       => 'VARCHAR',
                 'constraint' => '100',
-            ],
-            'image' => [
-                'type'       => 'VARCHAR',
-                'constraint' => '255',
             ],
             'created_at' => [
                 'type'       => ' TIMESTAMP DEFAULT CURRENT_TIMESTAMP',

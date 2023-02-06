@@ -42,33 +42,46 @@ class PostController extends BaseController
 
     public function store()
     {
-        $rule = [
-            'title' => 'required',
-            'body' => 'required',
-            'slug' => 'required',
-        ];
-
-        if($this->validate($rule)){
-            $data = [
-                'title' => $this->request->getPost('title'),
-                'body' => $this->request->getPost('body'),
-                'slug' => url_title($this->request->getPost('slug'), '-', true),
+        if (strtolower($this->request->getMethod()) === 'post') {
+            $rule = [         
+                'title' => 'required',
+                'body' => 'required',
+                'slug' => 'required',
+                /* 'file' => [
+                    'uploaded[file]|is_image[file]|max_size[file, 1024]'
+                ], */
             ];
 
-            $this->posts->save($data);
-            $data = [
-                'code' => 200,
-                'message' => 'Success!',
-            ];
-
-            return $this->respond($data);
+            if($this->validate($rule)){
+                $imageFile = $this->request->getFile('file');
+                $imageFile->move('/public/uploads');
+                
+                $data = [
+                    'img_name' => $imageFile->getRandomName(),
+                    'file'  => $imageFile->getClientMimeType(),
+                    'title' => $this->request->getPost('title'),
+                    'body' => $this->request->getPost('body'),
+                    'slug' => url_title($this->request->getPost('slug'), '-', true),
+                ];
+    
+                $this->posts->save($data);
+                $data = [
+                    'status' => true,
+                    'message' => 'Success!',
+                ];
+    
+                return $this->respond($data);
+            }else{
+                $data = [
+                    'status' => false,
+                    'message' => 'Invalid request.',
+                ];
+                return $this->failValidationErrors($data);
+            }
         }else{
-            $data = [
-                'code' => 400,
-                'message' => 'Invalid request.',
-            ];
-            return $this->failValidationErrors($data);
+            return $this->failNotFound();
         }
+        
     }
 
     public function view($id)
