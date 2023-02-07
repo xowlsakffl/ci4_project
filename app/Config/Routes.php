@@ -42,6 +42,22 @@ $routes->group('posts', static function($routes){
     //$routes->get('search', 'PostController::search');
 });
 
+$routes->group('blogs', static function($routes){
+    $routes->get('', 'BlogController::index');
+    $routes->post('', 'BlogController::store');
+    $routes->get('(:num)', 'BlogController::view/$1');
+    $routes->put('(:num)', 'BlogController::update/$1');
+    $routes->delete('(:num)', 'BlogController::delete/$1');
+});
+
+$routes->group('users', static function($routes){
+    $routes->get('', 'UserController::index');
+    $routes->post('', 'UserController::store');
+    $routes->get('(:num)', 'UserController::view/$1');
+    $routes->put('(:num)', 'UserController::update/$1');
+    $routes->delete('(:num)', 'UserController::delete/$1');
+});
+
 /* 
 $routes->match(['get', 'post'], 'news/create', 'NewsController::create');
 $routes->get('news/(:segment)', 'NewsController::view/$1');

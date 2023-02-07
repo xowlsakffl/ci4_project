@@ -16,12 +16,12 @@
 <body>
     <div class="app">
         <?=$this->include('layouts/inc/navbar.php')?>
+        <?=$this->include('layouts/inc/sidebar.php')?>
 
         <div class="container mb-5 mt-5">
             <?=$this->renderSection('script')?>
             <?=$this->renderSection('content')?>
         </div>
-        
     </div>
 
     <?=$this->renderSection('script')?>
