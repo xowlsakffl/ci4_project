@@ -9,15 +9,12 @@ class UserController extends BaseController
 {
     public function __construct()
     {
-        $user = auth()->user();
-        if(!$user || !$user->inGroup('superadmin')){
-            
-        }
         $this->user = model('UserModel');
     }
 
     public function index()
     {
         $this->user->paginate(20);
+        echo "1";
     }
 }

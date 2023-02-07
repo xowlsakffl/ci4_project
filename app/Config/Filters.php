@@ -8,6 +8,7 @@ use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
+use App\Filters\AdminFilter;
 
 class Filters extends BaseConfig
 {
@@ -21,6 +22,7 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'admin'         => AdminFilter::class,
     ];
 
     /**
@@ -53,7 +55,9 @@ class Filters extends BaseConfig
      * with a method you don’t expect could bypass the filter.
      */
     public array $methods = [
-        'post' => ['csrf']
+        'post' => ['csrf'],
+        'put' => ['csrf'],
+        'delete' => ['csrf'],
     ];
 
     /**

@@ -51,7 +51,7 @@ $routes->group('blogs', static function($routes){
 });
 
 $routes->group('users', static function($routes){
-    $routes->get('', 'UserController::index');
+    $routes->get('', 'UserController::index', ['filter' => \App\Filters\AdminFilter::class]);
     $routes->post('', 'UserController::store');
     $routes->get('(:num)', 'UserController::view/$1');
     $routes->put('(:num)', 'UserController::update/$1');

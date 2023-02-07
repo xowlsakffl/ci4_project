@@ -27,15 +27,15 @@ class AuthGroups extends ShieldAuthGroups
      */
     public array $groups = [
         'superadmin' => [
-            'title'       => 'Super Admin',
+            'title'       => '최고관리자',
             'description' => 'Complete control of the site.',
         ],
         'admin' => [
-            'title'       => 'Admin',
+            'title'       => '관리자',
             'description' => 'Day to day administrators of the site.',
         ],
         'developer' => [
-            'title'       => 'Developer',
+            'title'       => '개발자',
             'description' => 'Site programmers.',
         ],
         'user' => [
